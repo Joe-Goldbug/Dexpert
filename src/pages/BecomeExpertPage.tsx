@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Shield, Coins, TrendingUp, AlertCircle, CheckCircle, Wallet, ArrowRight } from 'lucide-react';
+import { Shield, Coins, TrendingUp, AlertCircle, CheckCircle, Wallet, ArrowRight, Mail, Star } from 'lucide-react';
 
 const BecomeExpertPage = () => {
   const [selectedCrypto, setSelectedCrypto] = useState<'BTC' | 'ETH'>('ETH');
   const [stakeAmount, setStakeAmount] = useState('');
+  const [expertType, setExpertType] = useState<'stake' | 'invite'>('stake');
 
   const requirements = [
     { title: "Minimum Stake", btc: "0.1 BTC", eth: "1.5 ETH" },
@@ -24,10 +25,131 @@ const BecomeExpertPage = () => {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-white mb-6">Become a Validation Expert</h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Stake cryptocurrency to become a certified platform expert and earn audit rewards with governance rights
+            Join our platform as an expert through staking or invitation to earn audit rewards with governance rights
           </p>
         </div>
 
+        {/* Expert Type Selection */}
+        <div className="mb-8">
+          <div className="flex justify-center space-x-4">
+            <button
+              onClick={() => setExpertType('stake')}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+                expertType === 'stake'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+              }`}
+            >
+              <Shield className="w-5 h-5 inline mr-2" />
+              Staking Expert
+            </button>
+            <button
+              onClick={() => setExpertType('invite')}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+                expertType === 'invite'
+                  ? 'bg-purple-600 text-white'
+                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+              }`}
+            >
+              <Star className="w-5 h-5 inline mr-2" />
+              Invited Expert
+            </button>
+          </div>
+        </div>
+
+        {expertType === 'invite' ? (
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Star className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-white mb-4">Invited Expert Program</h2>
+              <p className="text-gray-300">
+                Apply to become an invited expert through our email application process. 
+                Selected experts will undergo our rigorous review process.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+                  <Mail className="w-5 h-5 mr-2 text-purple-400" />
+                  Application Process
+                </h3>
+                <div className="space-y-3 text-gray-300">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">1</div>
+                    <p>Send your application email to <span className="text-purple-400 font-semibold">experts@dexpert.com</span></p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">2</div>
+                    <p>Include your CV, portfolio, and relevant certifications</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">3</div>
+                    <p>Our team will review your application within 5-7 business days</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">4</div>
+                    <p>Selected candidates will be contacted for an interview</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white/5 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-white mb-4">Requirements for Invited Experts</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>PhD in AI/ML or related field</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>5+ years industry experience</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Published research papers</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Industry recognition</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-white mb-4">Invited Expert Benefits</h3>
+                <div className="space-y-2 text-gray-300">
+                  <div className="flex items-center space-x-2">
+                    <Coins className="w-4 h-4 text-green-400" />
+                    <span>Higher audit rewards (0.05-0.1 ETH per audit)</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Star className="w-4 h-4 text-yellow-400" />
+                    <span>Priority access to premium datasets</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Shield className="w-4 h-4 text-blue-400" />
+                    <span>Enhanced governance voting power</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <TrendingUp className="w-4 h-4 text-purple-400" />
+                    <span>No staking requirements</span>
+                  </div>
+                </div>
+              </div>
+
+              <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 flex items-center justify-center space-x-2 group">
+                <Mail className="w-5 h-5" />
+                <span className="text-lg font-semibold">Send Application Email</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </div>
+        ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left side - Requirements and Benefits */}
           <div className="space-y-8">
@@ -159,6 +281,7 @@ const BecomeExpertPage = () => {
             </div>
           </div>
         </div>
+        )}
 
         {/* Success Stories */}
         <div className="mt-16 bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">

@@ -5,7 +5,7 @@ const ExpertRanking = () => {
   const experts = [
     {
       id: 1,
-      name: "Dr. 张明华",
+      name: "Dr.Mike",
       did: "did:eth:0x1a2b...c3d4",
       reputation: 9.8,
       speciality: "Computer Vision",
@@ -16,7 +16,7 @@ const ExpertRanking = () => {
     },
     {
       id: 2,
-      name: "Prof. 李雪菲",
+      name: "Prof.Lee",
       did: "did:btc:bc1q...xyz789",
       reputation: 9.6,
       speciality: "Natural Language Processing",
@@ -27,7 +27,7 @@ const ExpertRanking = () => {
     },
     {
       id: 3,
-      name: "Dr. 王建国",
+      name: "Dr.Bob",
       did: "did:eth:0x9f8e...a1b2",
       reputation: 9.4,
       speciality: "Machine Learning",
